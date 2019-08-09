@@ -1,0 +1,69 @@
+<textarea id="inputTA" style="width:500px; height:200px"></textarea>
+<br>
+<input type="button" value="produce" onclick="doProduce()"></button>
+<br>
+<textarea id="outputTA" style="width:500px; height:200px"></textarea>
+
+
+<script>
+
+function doProduce() {
+    var inputTA = document.getElementById("inputTA");
+    var outputTA = document.getElementById("outputTA");
+
+    var inputText = inputTA.value;
+
+    var preProcess = inputText.replace(/insert/gi, '');
+    preProcess = preProcess.replace(/into/gi, '');
+    preProcess = preProcess.replace(/[ ]/gi, '');
+    preProcess = preProcess.replace(/"/gi, '');
+    
+    var valueIndex = preProcess.toLowerCase().indexOf('values');
+    var parenthesesIndex = preProcess.toLowerCase().indexOf('(');
+    preProcess = preProcess.substring(parenthesesIndex + 1, valueIndex - 1);
+    
+    var keys = preProcess.split(',');
+
+    var output = '';
+
+    output += 'string sql = "' + inputText +'";\n\n';
+
+    
+    for (i = 0; i < keys.length; i++){
+        var replace = "regex";
+        var re = new RegExp(':' + keys[i],"g");
+        output = output.replace(re, ':' + i);
+    }
+
+
+    output += 
+    'OracleCommand cmd = cn.CreateCommand();\n' +
+    'cmd.Transaction = trn;\n' + 
+    'cmd.CommandText = sql;\n' +
+    'cmd.ArrayBindCount = dataList.Count;\n';
+
+    for (i = 0; i < keys.length; i++){
+        output += 
+        'string[] ' + keys[i] + ' = dataList.Select(d => d.' + keys[i] + ').ToArray();\n'
+        ;
+    }
+
+    for (i = 0; i < keys.length; i++){
+        output += 
+        'OracleParameter ' + keys[i]+ 's = new OracleParameter();\n' +
+        keys[i]+ 's.OracleDbType = OracleDbType.Varchar2;\n' +
+        keys[i]+ 's.Value = ' + keys[i] + ';\n' +
+        keys[i]+ 's.Size = 8;\n'
+        ;
+    }
+
+    for (i = 0; i < keys.length; i++){
+        output += 
+        'cmd.Parameters.Add(' + keys[i]+ 's);\n';
+    }
+
+    output += 'int result = cmd.ExecuteNonQuery();';
+    outputTA.value = output;
+}
+
+</script>

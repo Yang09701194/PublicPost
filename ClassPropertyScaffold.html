@@ -1,0 +1,38 @@
+
+
+
+<textarea id="inputTA" style="width:500px; height:200px"></textarea>
+<br>
+<input type="button" value="produce" onclick="doProduce()"></button>
+<br>
+<textarea id="outputTA" style="width:500px; height:200px"></textarea>
+
+
+<script>
+
+function doProduce() {
+    var inputTA = document.getElementById("inputTA");
+    var outputTA = document.getElementById("outputTA");
+
+    var inputText = inputTA.value;
+
+    var lines = inputText.split('\n');
+    var i;
+    var keys = [];
+    for (i = 0; i < lines.length; i++){
+        lines[i] = lines[i].trim();
+        var words = lines[i].split(' ');
+        keys.push(words[2]);
+    }
+
+    var output = '';
+    for (i = 0; i < keys.length; i++){
+        output += 
+        'tkt60.' + keys[i]+ ' = TM.' + keys[i] + ';\n';
+    }
+
+
+    outputTA.value = output;
+}
+
+</script>
