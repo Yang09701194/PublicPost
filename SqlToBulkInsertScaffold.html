@@ -16,18 +16,42 @@
 
     <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
     <!-- <script src="main.js"></script> -->
+
+    <style>
+    .containerL1 {
+        width: 90%;
+        margin: auto;
+        
+    }
+    
+
+    .containerL0{
+        margin: 20px;
+        
+    }
+    
+
+    .textarea {
+        width: 100%;
+        height: 200px;
+    }
+
+
+    </style>
 </head>
-<body>
 
+<body >
 
-    <textarea id="inputTA" style="width:500px; height:200px" placeholder=
-"Hint: paste Insert Sql here, and click produce button &#10&#10Example:&#10 &#10INSERT INTO TableTest (ColumnA, ColumnB, ColumnC, ColumnD) VALUES (:ColumnA, :ColumnB, :ColumnC, :ColumnD)"></textarea>
+    <div class="containerL0">
+    <div class="containerL1">
+    <textarea id="inputTA" class="textarea" placeholder=
+"Hint: Paste your Insert Sql here, and click produce button &#10&#10Example:&#10 &#10INSERT INTO TableTest (ColumnA, ColumnB, ColumnC, ColumnD) VALUES (:ColumnA, :ColumnB, :ColumnC, :ColumnD)"></textarea>
     <br>
-    <input type="button" value="convert" onclick="doConvert()"
-            class="btn btn-default"></button>
+    <input type="button" value="convert" onclick="tryDoConvert()"
+            class="btn btn-success btn-lg" >
     <br>
-    <textarea id="outputTA" style="width:500px; height:200px" placeholder=
-"Hint: convert sql to Oracle, OracleDbType are default all set to Varchar2, and Size all set to 8, need to check and modify yourself later.
+    <textarea id="outputTA" class="textarea" placeholder=
+"Hint: Convert insert sql to Oracle Bulk Insert Code, OracleDbType default all set to Varchar2, and Size all set to 8, need to check and modify yourself later.
 
 You can download this page and modify the javascript to fit your need.
 
@@ -65,12 +89,22 @@ cmd.Parameters.Add(ColumnDs);
 int result = cmd.ExecuteNonQuery();"></textarea>
     
     
-        
+</div>
+</div>
 
 </body>
 
 <script>
     
+
+function tryDoConvert(){
+    try {
+        doConvert();
+    } catch (e) {
+        alert ('convert fail, check if the insert sql format is correct, error message: ' + e);
+    }
+}
+
 function doConvert() {
     var inputTA = document.getElementById("inputTA");
     var outputTA = document.getElementById("outputTA");
