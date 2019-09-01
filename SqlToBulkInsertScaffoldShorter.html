@@ -119,8 +119,7 @@ function doConvert() {
     preProcess = preProcess.replace(/w/gi, '');
     preProcess = preProcess.replace(/\s/gi, '');
     preProcess = preProcess.replace(/\t/gi, '');
-   
-   
+    
     var valueIndex = preProcess.toLowerCase().indexOf('values');
     var parenthesesIndex = preProcess.toLowerCase().indexOf('(');
     preProcess = preProcess.substring(parenthesesIndex + 1, valueIndex - 1);
@@ -129,44 +128,29 @@ function doConvert() {
 
     var output = '';
 
-    output += 'string sql = "' + inputText +'";\n\n';
+    output += 'string sql = @"' + inputText +'";\n\n';
 
-    
-    for (i = 0; i < keys.length; i++){
-        var replace = "regex";
-        var re = new RegExp(':' + keys[i],"g");
-        output = output.replace(re, ':' + i);
-    }
+    // since here use BindByName = true, no need to replace to number
+    // for (i = 0; i < keys.length; i++){
+    //     var replace = "regex";
+    //     var re = new RegExp(':' + keys[i],"g");
+    //     output = output.replace(re, ':' + i);
+    // }
 
 
     output += 
     'OracleCommand cmd = cn.CreateCommand();\n' +
     'cmd.Connection = cn;\n' + 
     'cmd.Transaction = trn;\n' + 
-    'cmd.CommandText = sql;\n' +
-    'cmd.ArrayBindCount = dataList.Count;\n';
+    'cmd.ArrayBindCount = dataList.Count;\n' +
+    'cmd.BindByName = true;\n' +
+    'cmd.CommandText = sql;\n';
 
     for (i = 0; i < keys.length; i++){
-        output += 
-        'string[] ' + keys[i] + ' = dataList.Select(d => d.' + keys[i] + ').ToArray();\n'
-        ;
+        output +='cmd.Parameters.Add(new OracleParameter("' + keys[i] + '", OracleDbType.Varchar2, 6, dataList.Select(x => x.' + keys[i] + ').ToArray(), ParameterDirection.Input));\n';
     }
 
-    for (i = 0; i < keys.length; i++){
-        output += 
-        'OracleParameter ' + keys[i]+ 's = new OracleParameter();\n' +
-        keys[i]+ 's.OracleDbType = OracleDbType.Varchar2;\n' +
-        keys[i]+ 's.Value = ' + keys[i] + ';\n' +
-        keys[i]+ 's.Size = 8;\n'
-        ;
-    }
-
-    for (i = 0; i < keys.length; i++){
-        output += 
-        'cmd.Parameters.Add(' + keys[i]+ 's);\n';
-    }
-
-    output += 'int result = cmd.ExecuteNonQuery();';
+    output += 'int result = cmd.ExecuteNonQuery();\n\nreturn result;';
     outputTA.value = output;
 }
 
