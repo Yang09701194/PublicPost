@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,42 +49,27 @@
             class="btn btn-success btn-lg" >
     <br>
     <textarea id="outputTA" class="textarea" placeholder=
-"Hint: Click the convert button to convert insert sql to Oracle Bulk Insert Code, OracleDbType default all set to Varchar2, and Size all set to 8, need to check and modify yourself later.
+"Hint: Click the convert button to convert insert sql to Oracle Bulk Insert Code, OracleDbType default all set to Varchar2, and Size all set to 6, need to check and modify yourself later.
 
 You can download this page and modify the javascript to fit your need.
 
 Example:
 
-string sql = &quot;INSERT INTO TableTest (ColumnA, ColumnB, ColumnC, ColumnD) VALUES (:0, :1, :2, :3)&quot;;
+string sql = @&quot;INSERT INTO TableTest (ColumnA, ColumnB, ColumnC, ColumnD) VALUES (:ColumnA, :ColumnB, :ColumnC, :ColumnD)&quot;;
+
 OracleCommand cmd = cn.CreateCommand();
+cmd.Connection = cn;
 cmd.Transaction = trn;
-cmd.CommandText = sql;
 cmd.ArrayBindCount = dataList.Count;
-string[] ColumnA = dataList.Select(d =&gt; d.ColumnA).ToArray();
-string[] ColumnB = dataList.Select(d =&gt; d.ColumnB).ToArray();
-string[] ColumnC = dataList.Select(d =&gt; d.ColumnC).ToArray();
-string[] ColumnD = dataList.Select(d =&gt; d.ColumnD).ToArray();
-OracleParameter ColumnAs = new OracleParameter();
-ColumnAs.OracleDbType = OracleDbType.Varchar2;
-ColumnAs.Value = ColumnA;
-ColumnAs.Size = 8;
-OracleParameter ColumnBs = new OracleParameter();
-ColumnBs.OracleDbType = OracleDbType.Varchar2;
-ColumnBs.Value = ColumnB;
-ColumnBs.Size = 8;
-OracleParameter ColumnCs = new OracleParameter();
-ColumnCs.OracleDbType = OracleDbType.Varchar2;
-ColumnCs.Value = ColumnC;
-ColumnCs.Size = 8;
-OracleParameter ColumnDs = new OracleParameter();
-ColumnDs.OracleDbType = OracleDbType.Varchar2;
-ColumnDs.Value = ColumnD;
-ColumnDs.Size = 8;
-cmd.Parameters.Add(ColumnAs);
-cmd.Parameters.Add(ColumnBs);
-cmd.Parameters.Add(ColumnCs);
-cmd.Parameters.Add(ColumnDs);
-int result = cmd.ExecuteNonQuery();"></textarea>
+cmd.BindByName = true;
+cmd.CommandText = sql;
+cmd.Parameters.Add(new OracleParameter(&quot;ColumnA&quot;, OracleDbType.Varchar2, 6, dataList.Select(x =&gt; x.ColumnA).ToArray(), ParameterDirection.Input));
+cmd.Parameters.Add(new OracleParameter(&quot;ColumnB&quot;, OracleDbType.Varchar2, 6, dataList.Select(x =&gt; x.ColumnB).ToArray(), ParameterDirection.Input));
+cmd.Parameters.Add(new OracleParameter(&quot;ColumnC&quot;, OracleDbType.Varchar2, 6, dataList.Select(x =&gt; x.ColumnC).ToArray(), ParameterDirection.Input));
+cmd.Parameters.Add(new OracleParameter(&quot;ColumnD&quot;, OracleDbType.Varchar2, 6, dataList.Select(x =&gt; x.ColumnD).ToArray(), ParameterDirection.Input));
+int result = cmd.ExecuteNonQuery();
+
+return result;"></textarea>
     
     
 </div>
