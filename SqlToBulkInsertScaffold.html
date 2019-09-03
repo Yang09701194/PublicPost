@@ -45,7 +45,7 @@
     <textarea id="inputTA" class="textarea" placeholder=
 "Hint: Paste your Oracle Insert Sql here, and click convert button &#10&#10Example:&#10 &#10INSERT INTO TableTest (ColumnA, ColumnB, ColumnC, ColumnD) VALUES (:ColumnA, :ColumnB, :ColumnC, :ColumnD)"></textarea>
     <br>
-    <input type="button" value="convert" onclick="tryDoConvert()"
+    <input type="button" value="convert" onclick="tryDoConvertMulti()"
             class="btn btn-success btn-lg" >
     <br>
     <textarea id="outputTA" class="textarea" placeholder=
@@ -95,15 +95,15 @@ int result = cmd.ExecuteNonQuery();"></textarea>
 <script>
     
 
-function tryDoConvert(){
+function tryDoConvertMulti(){
     try {
-        doConvert();
+        doConvertMulti();
     } catch (e) {
         alert ('convert fail, check if the insert sql format is correct, error message: ' + e);
     }
 }
 
-function doConvert() {
+function doConvertMulti() {
     var inputTA = document.getElementById("inputTA");
     var outputTA = document.getElementById("outputTA");
 
