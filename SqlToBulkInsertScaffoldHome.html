@@ -68,13 +68,13 @@
             
     <div class="containerL0">
         <div class="containerL1">
-        <textarea id="inputTA" class="textarea" placeholder=
+        <textarea id="inputTASingle" class="textarea" placeholder=
     "Hint: Paste your Oracle Insert Sql here, and click convert button &#10&#10Example:&#10 &#10INSERT INTO TableTest (ColumnA, ColumnB, ColumnC, ColumnD) VALUES (:ColumnA, :ColumnB, :ColumnC, :ColumnD)"></textarea>
         <br>
         <input type="button" value="convert" onclick="tryDoConvertSingle()"
                 class="btn btn-success btn-lg" >
         <br>
-        <textarea id="outputTA" class="textarea" placeholder=
+        <textarea id="outputTASingle" class="textarea" placeholder=
 "Hint: Click the convert button to convert insert sql to Oracle Bulk Insert Code, OracleDbType default all set to Varchar2, and Size all set to 6, need to check and modify yourself later.
 
 You can download this page and modify the javascript to fit your need.
@@ -105,13 +105,13 @@ return result;"></textarea>
         <div id="multiCmdDiv" style="display: none">
                 <div class="containerL0">
                         <div class="containerL1">
-                        <textarea id="inputTA" class="textarea" placeholder=
+                        <textarea id="inputTAMulti" class="textarea" placeholder=
                     "Hint: Paste your Oracle Insert Sql here, and click convert button &#10&#10Example:&#10 &#10INSERT INTO TableTest (ColumnA, ColumnB, ColumnC, ColumnD) VALUES (:ColumnA, :ColumnB, :ColumnC, :ColumnD)"></textarea>
                         <br>
                         <input type="button" value="convert" onclick="tryDoConvertMulti()"
                                 class="btn btn-success btn-lg" >
                         <br>
-                        <textarea id="outputTA" class="textarea" placeholder=
+                        <textarea id="outputTAMulti" class="textarea" placeholder=
 "Hint: Click the convert button to convert insert sql to Oracle Bulk Insert Code, OracleDbType default all set to Varchar2, and Size all set to 8, need to check and modify yourself later.
 
 You can download this page and modify the javascript to fit your need.
@@ -183,8 +183,8 @@ int result = cmd.ExecuteNonQuery();"></textarea>
     }
     
     function doConvertSingle() {
-        var inputTA = document.getElementById("inputTA");
-        var outputTA = document.getElementById("outputTA");
+        var inputTA = document.getElementById("inputTASingle");
+        var outputTA = document.getElementById("outputTASingle");
     
         var inputText = inputTA.value;
     
@@ -247,8 +247,8 @@ int result = cmd.ExecuteNonQuery();"></textarea>
             }
             
             function doConvertMulti() {
-                var inputTA = document.getElementById("inputTA");
-                var outputTA = document.getElementById("outputTA");
+                var inputTA = document.getElementById("inputTAMulti");
+                var outputTA = document.getElementById("outputTAMulti");
             
                 var inputText = inputTA.value;
             
