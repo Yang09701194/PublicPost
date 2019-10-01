@@ -71,6 +71,10 @@
         <textarea id="inputTASingle" class="textarea" placeholder=
     "Hint: Paste your Oracle Insert Sql here, and click convert button &#10&#10Example:&#10 &#10INSERT INTO TableTest (ColumnA, ColumnB, ColumnC, ColumnD) VALUES (:ColumnA, :ColumnB, :ColumnC, :ColumnD)"></textarea>
         <br>
+        <br>
+        <textarea id="inputTASchema" class="textarea" placeholder=
+    "Hint: Paste Oracle Schema here, it will help generate length of parameters."></textarea>
+        <br>        
         <input type="button" value="convert" onclick="tryDoConvertSingle()"
                 class="btn btn-success btn-lg" >
         <br>
@@ -184,10 +188,42 @@ int result = cmd.ExecuteNonQuery();"></textarea>
     
     function doConvertSingle() {
         var inputTA = document.getElementById("inputTASingle");
+        var inputTASchema = document.getElementById("inputTASchema");
         var outputTA = document.getElementById("outputTASingle");
-    
+        
+        // # 處理 Schema 
+        var inputSchemas = inputTASchema.value.split('\n');;
+        var schemaInfo = new Object();
+        for (i = 0; i < inputSchemas.length; i++){
+            var line = inputSchemas[i];
+            var schemaArr = line.split('\t');
+            if(schemaArr.length >= 5){
+                // arr[0] 欄位名稱   arr[5] 型別名稱(型別長度)
+                var columnName = schemaArr[0];
+                schemaInfo[columnName + '_Name'] =  columnName;
+                
+                var typeInfo = schemaArr[5].replace(/\s/gi, '').toLowerCase();
+                if(typeInfo.indexOf('varchar2') >= 0){
+                    schemaInfo[columnName + '_Type'] = 'OracleDbType.Varchar2';
+                    var start = typeInfo.indexOf('(');
+                    var end = typeInfo.indexOf(')');
+                    schemaInfo[columnName + '_Length'] =  typeInfo.substring(start + 1, end - 4);
+                }            
+                if(typeInfo.indexOf('date') >= 0){
+                    schemaInfo[columnName + '_Type'] = 'OracleDbType.Date';                    
+                    schemaInfo[columnName + '_Length'] =  '0';
+                }            
+                if(typeInfo.indexOf('number') >= 0){
+                    schemaInfo[columnName + '_Type'] = 'OracleDbType.Decimal';
+                    var start = typeInfo.indexOf('(');
+                    var end = typeInfo.indexOf(',');
+                    schemaInfo[columnName + '_Length'] =  typeInfo.substring(start + 1, end);
+                }            
+            }            
+        }
+
+        // # 處理 Insert 語法 
         var inputText = inputTA.value;
-    
         var preProcess = inputText.replace(/insert/gi, '');
         preProcess = preProcess.replace(/into/gi, '');
         preProcess = preProcess.replace(/[ ]/gi, '');
@@ -224,7 +260,15 @@ int result = cmd.ExecuteNonQuery();"></textarea>
         'cmd.CommandText = sql;\n';
     
         for (i = 0; i < keys.length; i++){
-            output +='cmd.Parameters.Add(new OracleParameter("' + keys[i] + '", OracleDbType.Varchar2, 6, dataList.Select(x => x.' + keys[i] + ').ToArray(), ParameterDirection.Input));\n';
+            var type = 'OracleDbType.Varchar2';
+            if(schemaInfo.hasOwnProperty(keys[i] + '_Type')){
+                type = schemaInfo[keys[i] + '_Type'];
+            }
+            var length = '6'
+            if(schemaInfo.hasOwnProperty(keys[i] + '_Length')){
+                length = schemaInfo[keys[i] + '_Length'];
+            }         
+            output +='cmd.Parameters.Add(new OracleParameter("' + keys[i] + '", ' + type + ', ' + length + ', dataList.Select(x => x.' + keys[i] + ').ToArray(), ParameterDirection.Input));\n';
         }
     
         output += 'int result = cmd.ExecuteNonQuery();\n\nreturn result;';
@@ -249,9 +293,9 @@ int result = cmd.ExecuteNonQuery();"></textarea>
             function doConvertMulti() {
                 var inputTA = document.getElementById("inputTAMulti");
                 var outputTA = document.getElementById("outputTAMulti");
-            
+                
                 var inputText = inputTA.value;
-            
+                
                 var preProcess = inputText.replace(/insert/gi, '');
                 preProcess = preProcess.replace(/into/gi, '');
                 preProcess = preProcess.replace(/[ ]/gi, '');
@@ -260,8 +304,8 @@ int result = cmd.ExecuteNonQuery();"></textarea>
                 preProcess = preProcess.replace(/w/gi, '');
                 preProcess = preProcess.replace(/\s/gi, '');
                 preProcess = preProcess.replace(/\t/gi, '');
-               
-               
+                
+                
                 var valueIndex = preProcess.toLowerCase().indexOf('values');
                 var parenthesesIndex = preProcess.toLowerCase().indexOf('(');
                 preProcess = preProcess.substring(parenthesesIndex + 1, valueIndex - 1);
