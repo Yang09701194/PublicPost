@@ -232,7 +232,7 @@ int result = cmd.ExecuteNonQuery();"></textarea>
                     }            
                 }            
             }
-            else {
+            else if (schemaTypeVal == 'sqlDeveloper'){
                 // arr[0] 欄位名稱   arr[1] 型別名稱(型別長度)
                 var columnName = schemaArr[0];
                     schemaInfo[columnName + '_Name'] =  columnName;
