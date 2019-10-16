@@ -227,7 +227,7 @@ int result = cmd.ExecuteNonQuery();"></textarea>
                     if(typeInfo.indexOf('number') >= 0){
                         schemaInfo[columnName + '_Type'] = 'OracleDbType.Decimal';
                         var start = typeInfo.indexOf('(');
-                        var end = typeInfo.indexOf(')');
+                        var end = typeInfo.indexOf(',');
                         schemaInfo[columnName + '_Length'] =  typeInfo.substring(start + 1, end);
                     }            
                 }            
