@@ -19,26 +19,21 @@
             margin: auto;
             
         }
-        
     
         .containerL0{
             margin: 20px;
             
         }
-        
-    
+
         .textarea {
             width: 100%;
             height: 200px;
         }
-
         
     </style>
 
-
 </head>
 <body>
-    
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="width: 1000px">
         <a class="navbar-brand" href="#">OracleSqlToBulkInsertCode</a>
@@ -201,6 +196,13 @@ int result = cmd.ExecuteNonQuery();"></textarea>
         var inputTASchema = document.getElementById("inputTASchema");
         var outputTA = document.getElementById("outputTASingle");
         
+        // # Get Table Name
+        var inputtxt = inputTA.value.toLowerCase();
+        var tableNameStart = inputtxt.indexOf('into');
+        var tableNameEnd = inputtxt.indexOf('(');
+        var tableName = 
+            inputtxt.substring(tableNameStart + 4, tableNameEnd).replace(/\s/gi, '').replace(/\t/gi, '').toUpperCase();
+
         // # 處理 Schema 
         var inputSchemas = inputTASchema.value.split('\n');;
         var schemaInfo = new Object();
@@ -223,11 +225,13 @@ int result = cmd.ExecuteNonQuery();"></textarea>
                     if(typeInfo.indexOf('date') >= 0){
                         schemaInfo[columnName + '_Type'] = 'OracleDbType.Date';                    
                         schemaInfo[columnName + '_Length'] =  '0';
-                    }            
+                    }
                     if(typeInfo.indexOf('number') >= 0){
                         schemaInfo[columnName + '_Type'] = 'OracleDbType.Decimal';
                         var start = typeInfo.indexOf('(');
                         var end = typeInfo.indexOf(',');
+                        if(end < 0)
+                            end = typeInfo.indexOf(')');
                         schemaInfo[columnName + '_Length'] =  typeInfo.substring(start + 1, end);
                     }            
                 }            
@@ -253,13 +257,13 @@ int result = cmd.ExecuteNonQuery();"></textarea>
                         var start = typeInfo.indexOf('(');
                         var end = typeInfo.indexOf(',');
                         schemaInfo[columnName + '_Length'] =  typeInfo.substring(start + 1, end);
-                    }            
-            }        
+                    }
+            }
         }
-            
+
 
         // # 處理 Insert 語法 
-        var inputText = inputTA.value;
+        var inputText = inputTA.value;        
         var preProcess = inputText.replace(/insert/gi, '');
         preProcess = preProcess.replace(/into/gi, '');
         preProcess = preProcess.replace(/[ ]/gi, '');
@@ -277,6 +281,15 @@ int result = cmd.ExecuteNonQuery();"></textarea>
     
         var output = '';
     
+        output += 'public static List<' + tableName + '> ' + tableName + 's = new List<' + tableName + '>();\n';
+        output += 'public static int BulkInsert' + tableName + '(OracleConnection cn, OracleTransaction trn)\n';
+        output += '{\n';
+        output += 'if (' + tableName +'s.Count == 0)\n';
+        output += '{\n';
+        output += '_logger.Info("' + tableName + 's 無資料 , 不進行 BulkInsert' + tableName + '");\n';
+        output += 'return 0;\n';
+        output += '}\n\n\n';
+
         output += 'string sql = @"' + inputText +'";\n\n';
     
         // since here use BindByName = true, no need to replace to number
@@ -307,7 +320,11 @@ int result = cmd.ExecuteNonQuery();"></textarea>
             output +='cmd.Parameters.Add(new OracleParameter("' + keys[i] + '", ' + type + ', ' + length + ', dataList.Select(x => x.' + keys[i] + ').ToArray(), ParameterDirection.Input));\n';
         }
     
-        output += 'int result = cmd.ExecuteNonQuery();\n\nreturn result;';
+        output += 'int result = cmd.ExecuteNonQuery();\n';
+        output += '_logger.Info($"BulkInsert' + tableName + '  成功, insert資料筆數: {result} ");\n\n';
+        output += 'return result;\n';
+        output += '}\n';
+
         outputTA.value = output;
     }
     
@@ -388,6 +405,7 @@ int result = cmd.ExecuteNonQuery();"></textarea>
                 }
             
                 output += 'int result = cmd.ExecuteNonQuery();';
+                
                 outputTA.value = output;
             }
             
