@@ -223,7 +223,7 @@ int result = cmd.ExecuteNonQuery();"></textarea>
                         schemaInfo[columnName + '_Length'] =  typeInfo.substring(start + 1, end - 4);
                     }            
                     if(typeInfo.indexOf('date') >= 0){
-                        schemaInfo[columnName + '_Type'] = 'OracleDbType.Date';                    
+                        schemaInfo[columnName + '_Type'] = 'OracleDbType.Date';
                         schemaInfo[columnName + '_Length'] =  '0';
                     }
                     if(typeInfo.indexOf('number') >= 0){
@@ -269,7 +269,6 @@ int result = cmd.ExecuteNonQuery();"></textarea>
         preProcess = preProcess.replace(/[ ]/gi, '');
         preProcess = preProcess.replace(/"/gi, '');
         preProcess = preProcess.replace(/\n/gi, '');
-        preProcess = preProcess.replace(/w/gi, '');
         preProcess = preProcess.replace(/\s/gi, '');
         preProcess = preProcess.replace(/\t/gi, '');
         
