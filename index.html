@@ -4,437 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-	
-	<!-- https://search.google.com/search-console -->
-	<meta name="google-site-verification" content="FbQjhOztDpyQX0SKjAUaElem_5y-XA6Ca_25ikvvH_4" />
-    
-	<title> Oracle Sql To C# Bulk Insert Code </title>
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-    <style>
-        .containerL1 {
-            width: 90%;
-            margin: auto;
-            
-        }
-    
-        .containerL0{
-            margin: 20px;
-            
-        }
-
-        .textarea {
-            width: 100%;
-            height: 200px;
-        }
-        
-    </style>
-
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
+
 <body>
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="width: 1000px">
-        <a class="navbar-brand" href="#">OracleSqlToBulkInsertCode</a>
-       
-        <div class="collapse navbar-collapse" id="navbarSupportContent" style="display: inline">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#" onclick="toggleContent('single')">One Line Param</a>
-                </li>
-
-                <li class="nav-item active">
-                    <a class="nav-link" href="#" onclick="toggleContent('multi')">Multi Line Param</a>
-                </li>
-
-            </ul>
-        </div>
-    </nav>
-    
-    <div class="containerL0">
-        <div class="containerL1">
-            <span style="font-size: 16px">Example Insert Sql:</span>  <input type="text" style="font-size: 18px; width: 960px;color:#505050" value="INSERT INTO TableTest (ColumnA, ColumnB, ColumnC, ColumnD) VALUES (:ColumnA, :ColumnB, :ColumnC, :ColumnD)">    
-        </div>
+    <div class="header">
+        <a href="#"><img src="./Img/HomeSmall.PNG" alt="Yang09701194"></a>
+        <nav>
+            <a href="#">Oracle Sql To C# Bulk Insert Code</a>
+            <a href="#">Simple Java to C#</a>
+        </nav>
     </div>
 
-    <div id="pageContent" >
-        <div id="singleCmdDiv" >
-            
-    <div class="containerL0">
-        <div class="containerL1">
-            Insert Sql:
-            <br>
-        <textarea id="inputTASingle" class="textarea" placeholder=
-    "Hint: Paste your Oracle Insert Sql here, and click convert button &#10&#10Example:&#10 &#10INSERT INTO TableTest (ColumnA, ColumnB, ColumnC, ColumnD) VALUES (:ColumnA, :ColumnB, :ColumnC, :ColumnD)"></textarea>
-        <br>
-        <br>
-        Schema Type: <input type="radio" name="schemaType" value="toad"> Toad 
-        <input type="radio" name="schemaType" value="sqlDeveloper"> SQL Developer
-        <br>
-        Schema:
-        <br>
-        <textarea id="inputTASchema" class="textarea" placeholder=
-    "Hint: Paste Oracle Schema here, by directly copy all column defintion content Ctrl+A Ctrl+C in Schema Browser. It will help generate length of parameters."></textarea>
-        <br>        
-        <input type="button" value="convert" onclick="tryDoConvertSingle()"
-                class="btn btn-success btn-lg" >
-        <br>        
-        <textarea id="outputTASingle" class="textarea" placeholder=
-"Hint: Click the convert button to convert insert sql to Oracle Bulk Insert Code, OracleDbType default all set to Varchar2, and Size all set to 6, need to check and modify yourself later.
-
-You can download this page and modify the javascript to fit your need.
-
-Example:
-
-string sql = @&quot;INSERT INTO TableTest (ColumnA, ColumnB, ColumnC, ColumnD) VALUES (:ColumnA, :ColumnB, :ColumnC, :ColumnD)&quot;;
-
-OracleCommand cmd = cn.CreateCommand();
-cmd.Connection = cn;
-cmd.Transaction = trn;
-cmd.ArrayBindCount = dataList.Count;
-cmd.BindByName = true;
-cmd.CommandText = sql;
-cmd.Parameters.Add(new OracleParameter(&quot;ColumnA&quot;, OracleDbType.Varchar2, 6, dataList.Select(x =&gt; x.ColumnA).ToArray(), ParameterDirection.Input));
-cmd.Parameters.Add(new OracleParameter(&quot;ColumnB&quot;, OracleDbType.Varchar2, 6, dataList.Select(x =&gt; x.ColumnB).ToArray(), ParameterDirection.Input));
-cmd.Parameters.Add(new OracleParameter(&quot;ColumnC&quot;, OracleDbType.Varchar2, 6, dataList.Select(x =&gt; x.ColumnC).ToArray(), ParameterDirection.Input));
-cmd.Parameters.Add(new OracleParameter(&quot;ColumnD&quot;, OracleDbType.Varchar2, 6, dataList.Select(x =&gt; x.ColumnD).ToArray(), ParameterDirection.Input));
-int result = cmd.ExecuteNonQuery();
-
-return result;"></textarea>
-        
-        
+    <div class="banner">
+        <img src="./Img/code.jpg" alt="Banner Img">
+        Hello Yang09701194 Site
     </div>
+
+    <div class="path">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Nice Tool</a></li>
+        <li><a href="#">Introduction</a></li>
     </div>
-    
-        </div>
-        <div id="multiCmdDiv" style="display: none">
-                <div class="containerL0">
-                        <div class="containerL1">
-                        <textarea id="inputTAMulti" class="textarea" placeholder=
-                    "Hint: Paste your Oracle Insert Sql here, and click convert button &#10&#10Example:&#10 &#10INSERT INTO TableTest (ColumnA, ColumnB, ColumnC, ColumnD) VALUES (:ColumnA, :ColumnB, :ColumnC, :ColumnD)"></textarea>
-                        <br>
-                        <input type="button" value="convert" onclick="tryDoConvertMulti()"
-                                class="btn btn-success btn-lg" >
-                        <br>
-                        <textarea id="outputTAMulti" class="textarea" placeholder=
-"Hint: Click the convert button to convert insert sql to Oracle Bulk Insert Code, OracleDbType default all set to Varchar2, and Size all set to 8, need to check and modify yourself later.
 
-You can download this page and modify the javascript to fit your need.
-
-Example:
-
-string sql = &quot;INSERT INTO TableTest (ColumnA, ColumnB, ColumnC, ColumnD) VALUES (:0, :1, :2, :3)&quot;;
-OracleCommand cmd = cn.CreateCommand();
-cmd.Transaction = trn;
-cmd.CommandText = sql;
-cmd.ArrayBindCount = dataList.Count;
-string[] ColumnA = dataList.Select(d =&gt; d.ColumnA).ToArray();
-string[] ColumnB = dataList.Select(d =&gt; d.ColumnB).ToArray();
-string[] ColumnC = dataList.Select(d =&gt; d.ColumnC).ToArray();
-string[] ColumnD = dataList.Select(d =&gt; d.ColumnD).ToArray();
-OracleParameter ColumnAs = new OracleParameter();
-ColumnAs.OracleDbType = OracleDbType.Varchar2;
-ColumnAs.Value = ColumnA;
-ColumnAs.Size = 8;
-OracleParameter ColumnBs = new OracleParameter();
-ColumnBs.OracleDbType = OracleDbType.Varchar2;
-ColumnBs.Value = ColumnB;
-ColumnBs.Size = 8;
-OracleParameter ColumnCs = new OracleParameter();
-ColumnCs.OracleDbType = OracleDbType.Varchar2;
-ColumnCs.Value = ColumnC;
-ColumnCs.Size = 8;
-OracleParameter ColumnDs = new OracleParameter();
-ColumnDs.OracleDbType = OracleDbType.Varchar2;
-ColumnDs.Value = ColumnD;
-ColumnDs.Size = 8;
-cmd.Parameters.Add(ColumnAs);
-cmd.Parameters.Add(ColumnBs);
-cmd.Parameters.Add(ColumnCs);
-cmd.Parameters.Add(ColumnDs);
-int result = cmd.ExecuteNonQuery();"></textarea>
-                        
-                        
-                    </div>
-                    </div>
+    <div class="about">
+        <div class="wrap">
+            <div class="test">
+                <img src="" alt="">
+                <h3>Simple</h3>
+                <p>The tool is simple!</p>
+            </div>
+            <div class="test">
+                <img src="" alt="">
+                <h3>Convenient</h3>
+                <p>The tool is Convenient!</p>
+            </div>
+            <div class="test">
+                <img src="" alt="">
+                <h3>Fast</h3>
+                <p>The tool is Fast!</p>
+            </div>
         </div>
     </div>
 
 </body>
-
-
-
-
-<script>
-    function toggleContent(type){
-        if(type == "single"){
-            $('#multiCmdDiv').hide();
-            $('#singleCmdDiv').hide().fadeIn('slow');;
-        }
-        else{
-            $('#singleCmdDiv').hide();
-            $('#multiCmdDiv').hide().fadeIn('slow');;
-        }
-
-    }
-
-
-    function tryDoConvertSingle(){
-        try {
-            doConvertSingle();
-        } catch (e) {
-            alert ('convert fail, check if the insert sql format is correct, error message: ' + e);
-        }
-    }
-    
-    function doConvertSingle() {
-
-        var schemaTypeVal = $("input[name='schemaType']:checked").val();
-        
-        var inputTA = document.getElementById("inputTASingle");
-        var inputTASchema = document.getElementById("inputTASchema");
-        var outputTA = document.getElementById("outputTASingle");
-        
-        // # Get Table Name
-        var inputtxt = inputTA.value.toLowerCase();
-        var tableNameStart = inputtxt.indexOf('into');
-        var tableNameEnd = inputtxt.indexOf('(');
-        var tableName = 
-            inputtxt.substring(tableNameStart + 4, tableNameEnd).replace(/\s/gi, '').replace(/\t/gi, '').toUpperCase();
-
-        // # 處理 Schema 
-        var inputSchemas = inputTASchema.value.split('\n');;
-        var schemaInfo = new Object();
-        for (i = 0; i < inputSchemas.length; i++){
-            var line = inputSchemas[i];
-            var schemaArr = line.split('\t');
-            if(schemaTypeVal == 'toad'){
-                if(schemaArr.length >= 5){
-                    // arr[0] 欄位名稱   arr[5] 型別名稱(型別長度)
-                    var columnName = schemaArr[0];
-                    schemaInfo[columnName + '_Name'] =  columnName;
-                    
-                    var typeInfo = schemaArr[5].replace(/\s/gi, '').toLowerCase();
-                    if(typeInfo.indexOf('varchar2') >= 0){
-                        schemaInfo[columnName + '_Type'] = 'OracleDbType.Varchar2';
-                        var start = typeInfo.indexOf('(');
-                        var end = typeInfo.indexOf(')');
-                        schemaInfo[columnName + '_Length'] =  typeInfo.substring(start + 1, end - 4);
-                    }            
-                    if(typeInfo.indexOf('date') >= 0){
-                        schemaInfo[columnName + '_Type'] = 'OracleDbType.Date';
-                        schemaInfo[columnName + '_Length'] =  '0';
-                    }
-                    if(typeInfo.indexOf('number') >= 0){
-                        schemaInfo[columnName + '_Type'] = 'OracleDbType.Decimal';
-                        var start = typeInfo.indexOf('(');
-                        var end = typeInfo.indexOf(',');
-                        if(end < 0)
-                            end = typeInfo.indexOf(')');
-                        schemaInfo[columnName + '_Length'] =  typeInfo.substring(start + 1, end);
-                    }            
-                }            
-            }
-            else if (schemaTypeVal == 'sqlDeveloper'){
-                // arr[0] 欄位名稱   arr[1] 型別名稱(型別長度)
-                var columnName = schemaArr[0];
-                    schemaInfo[columnName + '_Name'] =  columnName;
-                    
-                    var typeInfo = schemaArr[1].replace(/\s/gi, '').toLowerCase();
-                    if(typeInfo.indexOf('varchar2') >= 0){
-                        schemaInfo[columnName + '_Type'] = 'OracleDbType.Varchar2';
-                        var start = typeInfo.indexOf('(');
-                        var end = typeInfo.indexOf(')');
-                        schemaInfo[columnName + '_Length'] =  typeInfo.substring(start + 1, end - 4);
-                    }            
-                    if(typeInfo.indexOf('date') >= 0){
-                        schemaInfo[columnName + '_Type'] = 'OracleDbType.Date';                    
-                        schemaInfo[columnName + '_Length'] =  '0';
-                    }            
-                    if(typeInfo.indexOf('number') >= 0){
-                        schemaInfo[columnName + '_Type'] = 'OracleDbType.Decimal';
-                        var start = typeInfo.indexOf('(');
-                        var end = typeInfo.indexOf(',');
-                        schemaInfo[columnName + '_Length'] =  typeInfo.substring(start + 1, end);
-                    }
-            }
-        }
-
-
-        // # 處理 Insert 語法 
-        var inputText = inputTA.value;        
-        var preProcess = inputText.replace(/insert/gi, '');
-        preProcess = preProcess.replace(/into/gi, '');
-        preProcess = preProcess.replace(/[ ]/gi, '');
-        preProcess = preProcess.replace(/"/gi, '');
-        preProcess = preProcess.replace(/\n/gi, '');
-        preProcess = preProcess.replace(/\s/gi, '');
-        preProcess = preProcess.replace(/\t/gi, '');
-        
-        var valueIndex = preProcess.toLowerCase().indexOf('values');
-        var parenthesesIndex = preProcess.toLowerCase().indexOf('(');
-        preProcess = preProcess.substring(parenthesesIndex + 1, valueIndex - 1);
-        
-        var keys = preProcess.split(',');
-    
-        var output = '';
-    
-        output += 'public static List<' + tableName + '> ' + tableName + 's = new List<' + tableName + '>();\n';
-        output += 'public static int BulkInsert' + tableName + '(OracleConnection cn, OracleTransaction trn)\n';
-        output += '{\n';
-        output += 'if (' + tableName +'s.Count == 0)\n';
-        output += '{\n';
-        output += '_logger.Info("' + tableName + 's 無資料 , 不進行 BulkInsert' + tableName + '");\n';
-        output += 'return 0;\n';
-        output += '}\n\n\n';
-
-        output += 'string sql = @"' + inputText +'";\n\n';
-    
-        // since here use BindByName = true, no need to replace to number
-        // for (i = 0; i < keys.length; i++){
-        //     var replace = "regex";
-        //     var re = new RegExp(':' + keys[i],"g");
-        //     output = output.replace(re, ':' + i);
-        // }
-    
-    
-        output += 
-        'OracleCommand cmd = cn.CreateCommand();\n' +
-        'cmd.Connection = cn;\n' + 
-        'cmd.Transaction = trn;\n' + 
-        'cmd.ArrayBindCount = dataList.Count;\n' +
-        'cmd.BindByName = true;\n' +
-        'cmd.CommandText = sql;\n';
-    
-        for (i = 0; i < keys.length; i++){
-            var type = 'OracleDbType.Varchar2';
-            if(schemaInfo.hasOwnProperty(keys[i] + '_Type')){
-                type = schemaInfo[keys[i] + '_Type'];
-            }
-            var length = '6';
-            if(schemaInfo.hasOwnProperty(keys[i] + '_Length')){
-                length = schemaInfo[keys[i] + '_Length'];
-            }         
-            output +='cmd.Parameters.Add(new OracleParameter("' + keys[i] + '", ' + type + ', ' + length + ', dataList.Select(x => x.' + keys[i] + ').ToArray(), ParameterDirection.Input));\n';
-        }
-    
-        output += 'int result = cmd.ExecuteNonQuery();\n';
-        output += '_logger.Info($"BulkInsert' + tableName + '  成功, insert資料筆數: {result} ");\n\n';
-        output += 'return result;\n';
-        output += '}\n';
-
-        outputTA.value = output;
-    }
-    
-    </script>
-    
-
-
-    <script>
-    
-
-            function tryDoConvertMulti(){
-                try {
-                    doConvertMulti();
-                } catch (e) {
-                    alert ('convert fail, check if the insert sql format is correct, error message: ' + e);
-                }
-            }
-            
-            function doConvertMulti() {
-                var inputTA = document.getElementById("inputTAMulti");
-                var outputTA = document.getElementById("outputTAMulti");
-                
-                var inputText = inputTA.value;
-                
-                var preProcess = inputText.replace(/insert/gi, '');
-                preProcess = preProcess.replace(/into/gi, '');
-                preProcess = preProcess.replace(/[ ]/gi, '');
-                preProcess = preProcess.replace(/"/gi, '');
-                preProcess = preProcess.replace(/\n/gi, '');
-                preProcess = preProcess.replace(/w/gi, '');
-                preProcess = preProcess.replace(/\s/gi, '');
-                preProcess = preProcess.replace(/\t/gi, '');
-                
-                
-                var valueIndex = preProcess.toLowerCase().indexOf('values');
-                var parenthesesIndex = preProcess.toLowerCase().indexOf('(');
-                preProcess = preProcess.substring(parenthesesIndex + 1, valueIndex - 1);
-                
-                var keys = preProcess.split(',');
-            
-                var output = '';
-            
-                output += 'string sql = @"' + inputText +'";\n\n';
-            
-                
-                for (i = 0; i < keys.length; i++){
-                    var replace = "regex";
-                    var re = new RegExp(':' + keys[i],"g");
-                    output = output.replace(re, ':' + i);
-                }
-            
-            
-                output += 
-                'OracleCommand cmd = cn.CreateCommand();\n' +
-                'cmd.Connection = cn;\n' + 
-                'cmd.Transaction = trn;\n' + 
-                'cmd.CommandText = sql;\n' +
-                'cmd.ArrayBindCount = dataList.Count;\n';
-            
-                for (i = 0; i < keys.length; i++){
-                    output += 
-                    'string[] ' + keys[i] + ' = dataList.Select(d => d.' + keys[i] + ').ToArray();\n'
-                    ;
-                }
-            
-                for (i = 0; i < keys.length; i++){
-                    output += 
-                    'OracleParameter ' + keys[i]+ 's = new OracleParameter();\n' +
-                    keys[i]+ 's.OracleDbType = OracleDbType.Varchar2;\n' +
-                    keys[i]+ 's.Value = ' + keys[i] + ';\n' +
-                    keys[i]+ 's.Size = 8;\n'
-                    ;
-                }
-            
-                for (i = 0; i < keys.length; i++){
-                    output += 
-                    'cmd.Parameters.Add(' + keys[i]+ 's);\n';
-                }
-            
-                output += 'int result = cmd.ExecuteNonQuery();';
-                
-                outputTA.value = output;
-            }
-            
-            </script>
-            
-
-</html>
-
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <!-- https://search.google.com/search-console -->
-    <meta name="google-site-verification" content="FbQjhOztDpyQX0SKjAUaElem_5y-XA6Ca_25ikvvH_4" />
-
-
-    <title>Index</title>
-</head>
-
-<body>
-    <a href="/SqlToBulkInsertScaffoldHome">SqlToBulkInsertScaffoldHome</a>
-</body>
-
 </html>
