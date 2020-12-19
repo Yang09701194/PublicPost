@@ -1,8 +1,21 @@
+
+.footer 
+{
+    height: 50px;
+    background-color: #A5FC76;
+    width: 100%;
+    margin: 50px 0 0 0 ;
+    vertical-align:middle; 
+    text-align:center;
+    line-height: 50px;
+    font-style: 14px;
+    color: #349500;
+}
+
 .header {
     display: flex;
     background-color: #A5FC76;
     padding: 3px 5px;
-
 }
 
 .header .logo {
@@ -28,9 +41,13 @@
 
 .header nav a:hover {
     background-color: #ECFF6A;
+    transition:all 500ms ease;   /* 動畫顏色漸變 */    
 }
 
+.banner{
+    position: relative;
 
+}
 .banner img {
     width: 100%;
     position: relative;
@@ -48,3 +65,71 @@
     color:white;
 
 }
+
+
+.path {
+    display: flex;
+}
+.path li{
+    position: relative;
+    
+    padding: 6px 8px;
+}
+.path li a{
+    color: #aaa;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.path li + li::before{
+    content: '/';
+    color: #aaa;
+    position: absolute;
+    left: 0;
+}
+
+.wrap{
+    width: 80%;
+    margin: auto;
+}
+.about .wrap {
+    display: flex;
+}
+
+.about .wrap .item{
+    width: 50%;
+    margin: 0 10px;
+    text-align: center; 
+    position: relative;
+}
+
+/*
+
+垂直置中試很久才找到有用的
+https://stackoverflow.com/questions/4888223/align-image-in-center-and-middle-within-div#comment24364471_4888288
+最後是  容器 display:flex;
+img  margin:auto ;
+*/
+
+.about .wrap .item .img-box {
+    height: 120px;
+    display:flex;   
+    margin: 0 0 10px 0;    
+}
+
+.about .wrap .item .img-box img {
+    width: 200px;
+    height: auto;
+    margin:auto ;
+}
+
+/* .about .wrap .item h3{
+    width: 50%;
+    margin: 0 10px;
+    text-align: center; 
+    position: relative;
+} */
+
+
+
+
