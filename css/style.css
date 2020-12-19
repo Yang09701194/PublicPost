@@ -103,8 +103,14 @@
     position: relative;
 }
 
-/*
 
+.about .wrap .item a{
+    text-decoration: none;
+    color: #000;
+}
+
+
+/*
 垂直置中試很久才找到有用的
 https://stackoverflow.com/questions/4888223/align-image-in-center-and-middle-within-div#comment24364471_4888288
 最後是  容器 display:flex;
@@ -114,7 +120,7 @@ img  margin:auto ;
 .about .wrap .item .img-box {
     height: 120px;
     display:flex;   
-    margin: 0 0 10px 0;    
+    margin: 0 0 15px 0;    
 }
 
 .about .wrap .item .img-box img {
@@ -122,6 +128,7 @@ img  margin:auto ;
     height: auto;
     margin:auto ;
 }
+
 
 /* .about .wrap .item h3{
     width: 50%;
