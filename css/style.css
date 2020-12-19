@@ -1,16 +1,12 @@
-
-
-
-.header{
+.header {
     display: flex;
-    background-color: #B1FF72;
-    padding: 6px 10px;
+    background-color: #A5FC76;
+    padding: 3px 5px;
 
 }
- 
-.header img {
-    
-    width: 50%;
+
+.header .logo {
+    width: 40%;
     height: auto;
 }
 
@@ -20,12 +16,35 @@
     font-size: 0;
 }
 
-.header nav a{
+.header nav a {
     font-size: 16px;
     color: #AD6602;
     text-decoration: none;
     display: inline-block;
-    line-height: 52px;/*6 40 6*/
+    line-height: 45px;
+    /*6 40 6*/
+    padding: 0 10px;
+}
+
+.header nav a:hover {
+    background-color: #ECFF6A;
 }
 
 
+.banner img {
+    width: 100%;
+    position: relative;
+}
+
+
+.banner-text {
+    position: absolute;
+    top: 44%;
+    left: 49%;
+    transform: translate(-50%, -50%);
+    font-size: 65px;
+    width: 100%;
+    text-align: center;
+    color:white;
+
+}
