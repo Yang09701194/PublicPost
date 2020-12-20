@@ -1,0 +1,12 @@
+
+
+.header .logo{
+    width: 20%;
+    height: auto;
+}
+
+.logo-text{
+    display: inline-block;
+    padding: 0px 15px;
+}
+
