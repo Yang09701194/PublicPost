@@ -11,8 +11,8 @@
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous"> -->
     <link href="./css/bootstrap433.min.css" rel="stylesheet">
     <link href="./css/docs.min.css" rel="stylesheet">
-    <!-- <link href="./css/common.css"  rel="stylesheet">
-    <link rel="stylesheet" href="./css/style2.css"> -->
+    <link href="./css/common.css"  rel="stylesheet">
+    <link rel="stylesheet" href="./css/style2.css">
 
 </head>
 
@@ -26,43 +26,89 @@ integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroa
 <!-- <script src="./script/dropdown.js"></script> -->
 
 
-
 <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="#">Navbar</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
+    <div class="container">
+        <div class="header">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light" >
+                <a class="navbar-brand w50pa" href="#"><img class="logo" src="./Img/HomeSmall.PNG" alt=""><span class="mx-1 h5 logo-text fSize22">Java Convert To CSharp</span></a>
+                <!-- button 我先不加navbar-toggler -->
+                <!-- 漢堡選單 -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportContent" aria-controls="navbarSupportContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <!-- 漢堡圖示 -->
+                    <span class="navbar-toggler-icon"></span>
                 </button>
-              
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav mr-auto">
+
+                <div class="collapse navbar-collapse" id="navbarSupportContent">
+                <ul class="navbar-nav mr-auto w30pa">
                     <li class="nav-item active">
-                      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="#" >Java<span class="sr-only" >(curr)</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link" href="#">Converter</a>
                     </li>
+                    <!-- 下拉式選單 -->
                     <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
-                      </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                      </div>
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">C_Sharp</a>
+                        <!-- 下拉選單內容 -->
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">LINQ</a>
+                            <a class="dropdown-item" href="#">Factory</a>
+                        </div>
                     </li>
-                    <li class="nav-item">
-                      <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                    </li>
-                  </ul>
-                  <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                  </form>
+                    
+                </ul>
+
+                <form class="" action="" style="width:w10pa">
+                    <div style="width: 300px;">
+                        <input class="mr-sm2 " 
+                        type="text" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type=submit>Search</button>
+                    </div>
+                    
+                </form>
                 </div>
-              </nav>
+            </nav>
+        </div>
+        <div class="content">
+            <div class="description">
+                <span>Convert C# to Java, with basic convert</span>
+            </div>
+            <div class="main">
+                <div>Paste C# Code:</div>
+                <textarea id="csharpTxt" class="textarea" placeholder="Hint: Paste C# code here"></textarea>
+                <!-- 果然看過t寫的css 裡面一堆 w100 w50 就想 bootstrap會不會也有 就不用自己刻  接著就連想到查到那個長的奇怪的 mr-??
+                m跟r都有一些特定ui屬性的意義
+                結果就真的找到了  margin Npx  就是 m-N
+                https://getbootstrap.com/docs/4.4/utilities/spacing/ -->
+                <input type="button" onclick="convertCSharpToJava()" class="btn btn-success btn-lg mt-1 mb-2" value="Convert">
+                <textarea id="javaTxt" class="textarea" placeholder="Hint: Paste C# code here"></textarea>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        function convertCSharpToJava(){
+            try {
+                var csharpTA = document.getElementById('csharpTxt');
+                var csharpT = csharpTA.value; 
+                var javaTA = document.getElementById('javaTxt');
+
+                var javaT = csharpT.replace(/.max/g, '.Max');
+                javaT = javaT.replace(/.min/g, '.Min');
+                javaT = javaT.replace(/.length/g, '.Length');
+                javaT = javaT.replace(/.abs/g, '.Abs');
+                
+                javaTA.value = javaT;
+
+            } catch (e) {
+                alert('convert error: ' + e);
+            }
+        }
+    </script>
 </body>
+
 
 </html>
