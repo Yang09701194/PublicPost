@@ -1,0 +1,16 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+   <url>
+      <loc>https://yang09701194.github.io/PublicWeb/</loc>
+   </url>
+   <url>
+      <loc>https://yang09701194.github.io/PublicWeb/JavaToCSharp.html</loc>
+   </url>
+   <url>
+      <loc>https://yang09701194.github.io/PublicWeb/SqlToBulkInsertScaffoldHome.html</loc>
+   </url>
+
+</urlset>
