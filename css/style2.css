@@ -1,7 +1,7 @@
 
 
 .header .logo{
-    width: 25%;
+    width: 28%;
     height: auto;
 }
 
@@ -27,3 +27,10 @@
     height: 200px;
 }
 
+
+.description {
+    border: yellow solid 3px;
+    color: #0b6a06;
+    
+
+}
