@@ -1,12 +1,10 @@
-
-.footer 
-{
+.footer {
     height: 50px;
     background-color: #A5FC76;
     width: 100%;
-    margin: 50px 0 0 0 ;
-    vertical-align:middle; 
-    text-align:center;
+    margin: 50px 0 0 0;
+    vertical-align: middle;
+    text-align: center;
     line-height: 50px;
     font-style: 14px;
     color: #349500;
@@ -18,7 +16,7 @@
     padding: 3px 5px;
 }
 
-.header .logo{
+.header .logo {
     width: 40%;
     height: auto;
 }
@@ -42,13 +40,15 @@
 
 .header nav a:hover {
     background-color: #ECFF6A;
-    transition:all 500ms ease;   /* 動畫顏色漸變 */    
+    transition: all 500ms ease;
+    /* 動畫顏色漸變 */
 }
 
-.banner{
+.banner {
     position: relative;
 
 }
+
 .banner img {
     width: 100%;
     position: relative;
@@ -63,7 +63,7 @@
     font-size: 65px;
     width: 100%;
     text-align: center;
-    color:white;
+    color: white;
 
 }
 
@@ -71,41 +71,45 @@
 .path {
     display: flex;
 }
-.path li{
+
+.path li {
     position: relative;
-    
+
     padding: 6px 8px;
 }
-.path li a{
+
+.path li a {
     color: #aaa;
     text-decoration: none;
     font-size: 14px;
 }
 
-.path li + li::before{
+.path li+li::before {
     content: '/';
     color: #aaa;
     position: absolute;
     left: 0;
 }
 
-.wrap{
+.wrap {
     width: 80%;
     margin: auto;
 }
+
 .about .wrap {
     display: flex;
 }
 
-.about .wrap .item{
+.about .wrap .item {
     width: 50%;
     margin: 0 10px;
-    text-align: center; 
+    text-align: center;
     position: relative;
+    display: inline;
 }
 
 
-.about .wrap .item a{
+.about .wrap .item a {
     text-decoration: none;
     color: #000;
 }
@@ -120,14 +124,14 @@ img  margin:auto ;
 
 .about .wrap .item .img-box {
     height: 120px;
-    display:flex;   
-    margin: 0 0 15px 0;    
+    display: flex;
+    margin: 0 0 15px 0;
 }
 
 .about .wrap .item .img-box img {
     width: 200px;
     height: auto;
-    margin:auto ;
+    margin: auto;
 }
 
 
@@ -140,9 +144,47 @@ img  margin:auto ;
 
 
 
-.subDescription{
+.subDescription {
     color: gray;
     margin: 5px 0;
 }
 
 
+
+/* w3sch 是說 always mobile first RWD 是用在桌機 因為這樣 mobile 顯示才快
+這代表說 RWD 在轉換需要時間    所以直接顯示的對手機寫
+需要RWD的  才加在  @media only screen  代表加在 media裡的比較慢
+
+yah是不同網址  看來是兩者都特別寫一個專門的   所以兩個都快
+可能也是考慮速度  不過可能成本比較高   應該就是專業的
+而且 y 特別的是  手機一刷頁面   整個網頁架構是直接出現  都不用變化長寬 
+也不是由上到下繪製  動來動去 
+
+像是 ith 載入的時後  還是會沒內容時折疊  載入圖像後撐開  所以畫面會跳動*/
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+    .item {
+        width: 100%;
+        margin: 0 10px;
+        text-align: center;
+        position: relative;
+    }
+
+
+    .banner-text {
+        /* position: absolute;
+        top: 44%;
+        left: 49%;
+        transform: translate(-50%, -50%); */
+        font-size: 45px;
+        /* width: 100%;
+        text-align: center;
+        color: white; */
+    
+    }
+    
+    .about .wrap {
+        display: inline;
+    }
+    
+}
