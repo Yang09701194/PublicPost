@@ -161,6 +161,8 @@ yah是不同網址  看來是兩者都特別寫一個專門的   所以兩個都
 也不是由上到下繪製  動來動去 
 
 像是 ith 載入的時後  還是會沒內容時折疊  載入圖像後撐開  所以畫面會跳動*/
+
+/* 可以用 and 多個條件   @media screen and (min-width: 400px) and (max-width: 700px) */
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (max-width: 768px) {
     .item {
