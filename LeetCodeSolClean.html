@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Java Convert To C#</title>
+    <title>LeetCode Sol Article Cleaner</title>
     <!-- CSS only -->
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous"> -->
@@ -17,24 +15,12 @@
     <link href="./css/common.css"  rel="stylesheet">
     <link rel="stylesheet" href="./css/style2.css">
 
-
 </head>
-
-<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
-</script> -->
-<script src="./script/jquery-3.3.1.slim.min.js"></script>
-<script src="./script/bootstrap43.bundle.min.js">
-</script>
-
-<!-- <script src="./script/dropdown.js"></script> -->
-
-
 <body>
     <div class="container">
         <div class="header">
             <nav class="navbar navbar-expand-lg navbar-light bg-light" >
-                <a class="navbar-brand w50pa" href="#"><img class="logo" src="./Img/HomeSmall.PNG" alt=""><span class="mx-1 h5 logo-text fSize22">Java Convert To CSharp</span></a>
+                <a class="navbar-brand w50pa" href="#"><img class="logo" src="./Img/HomeSmall.PNG" alt=""><span class="mx-1 h5 logo-text fSize22">LC Sol Article Cleaner</span></a>
                 <!-- button 我先不加navbar-toggler -->
                 <!-- 漢堡選單 -->
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportContent" aria-controls="navbarSupportContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,17 +61,17 @@ integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroa
         </div>
         <div class="content">
             <div class="description mt-2 mb-2 p-2">
-                <span>Convert Java to C#, with basic convert: max min length abs</span>
+                <span>Clean LeetCode Sol Article</span>
             </div>
             <div class="main">
-                <div class="mt-1 mb-2">Paste Java Code:</div>
-                <textarea id="javaTxt" class="textarea" placeholder="Hint: Paste Java code here"></textarea>
+                <div class="mt-1 mb-2">Paste LeetCode Sol Article:</div>
+                <textarea id="solTxt" class="textarea" placeholder="Hint: Paste LeetCode Sol Article here"></textarea>
                 <!-- 果然看過t寫的css 裡面一堆 w100 w50 就想 bootstrap會不會也有 就不用自己刻  接著就連想到查到那個長的奇怪的 mr-??
                 m跟r都有一些特定ui屬性的意義
                 結果就真的找到了  margin Npx  就是 m-N
                 https://getbootstrap.com/docs/4.4/utilities/spacing/ -->
-                <input type="button" onclick="convertCSharpToJava()" class="btn btn-success btn-lg mt-1 mb-2" value="Convert">
-                <textarea id="csharpTxt" class="textarea" placeholder="Hint: Converted Result"></textarea>
+                <input type="button" onclick="convertCSharpToJava()" class="btn btn-success btn-lg mt-1 mb-2" value="Clean">
+                <textarea id="resultTxt" class="textarea" placeholder="Hint: Result"></textarea>
 
             </div>
             <div class="footer p-2"></div>
@@ -96,16 +82,25 @@ integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroa
     <script>
         function convertCSharpToJava(){
             try {
-                var javaTA = document.getElementById('javaTxt');
-                var javaT = javaTA.value; 
-                var csharpTA = document.getElementById('csharpTxt');
+                var inputTA = document.getElementById('solTxt');
+                var inputT = inputTA.value; 
+                var outputT = document.getElementById('resultTxt');
 
-                javaT = javaT.replace(/.max/g, '.Max');
-                javaT = javaT.replace(/.min/g, '.Min');
-                javaT = javaT.replace(/.length/g, '.Length');
-                javaT = javaT.replace(/.abs/g, '.Abs');
+                inputT = inputT.replace(/\\text/g, '');
+                inputT = inputT.replace(/\\mathcal{O}/g, '');
+                inputT = inputT.replace(/{{\(/g, '');
+                inputT = inputT.replace(/{{/g, '');
+                inputT = inputT.replace(/}}/g, '');
+                // inputT = inputT.replace(/.abs/g, '.Abs');
                 
-                csharpTA.value = javaT;
+                outputT.value = inputT;
+
+                var text = inputT;
+                    navigator.clipboard.writeText(text).then(function() {
+                    console.log('Async: Copying to clipboard was successful!');
+                    }, function(err) {
+                    alert('Async: Could not copy text: ', err);
+                });
 
             } catch (e) {
                 alert('convert error: ' + e);
