@@ -102,11 +102,10 @@
                     commentLines.push('// ' + element);
                 }
 
-                outputT.value = commentLines.join('\n');
-
                 //https://stackoverflow.com/questions/400212/how-do-i-copy-to-the-clipboard-in-javascript
-                var text = inputT;
-                    navigator.clipboard.writeText(text).then(function() {
+                var res =  commentLines.join('\n');
+                outputT.value = res;
+                navigator.clipboard.writeText(res).then(function() {
                     console.log('Async: Copying to clipboard was successful!');
                     }, function(err) {
                     alert('Async: Could not copy text: ', err);
