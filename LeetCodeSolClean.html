@@ -93,7 +93,16 @@
                 inputT = inputT.replace(/}}/g, '');
                 // inputT = inputT.replace(/.abs/g, '.Abs');
                 
-                outputT.value = inputT;
+                var lines = inputT.split('\n');
+
+
+                var commentLines = [];
+                for (let index = 0; index < lines.length; index++) {
+                    const element = lines[index];
+                    commentLines.push('// ' + element);
+                }
+
+                outputT.value = commentLines.join('\n');
 
                 //https://stackoverflow.com/questions/400212/how-do-i-copy-to-the-clipboard-in-javascript
                 var text = inputT;
