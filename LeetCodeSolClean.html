@@ -95,6 +95,7 @@
                 
                 outputT.value = inputT;
 
+                //https://stackoverflow.com/questions/400212/how-do-i-copy-to-the-clipboard-in-javascript
                 var text = inputT;
                     navigator.clipboard.writeText(text).then(function() {
                     console.log('Async: Copying to clipboard was successful!');
