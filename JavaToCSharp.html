@@ -104,6 +104,13 @@ integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroa
                 javaT = javaT.replace(/.min/g, '.Min');
                 javaT = javaT.replace(/.length/g, '.Length');
                 javaT = javaT.replace(/.abs/g, '.Abs');
+                javaT = javaT.replace(/HashMap/g, 'Dictionary');
+                javaT = javaT.replace(/Map/g, 'Dictionary');
+                javaT = javaT.replace(/Integer/g, 'int');
+                javaT = javaT.replace(/.get\(/g, '[');
+                javaT = javaT.replace(/.size()/g, '.Count()');
+                javaT = javaT.replace(/ : /g, ' in ');
+                javaT = javaT.replace(/.add/g, '.Add');
                 
                 csharpTA.value = javaT;
 
