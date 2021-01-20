@@ -70,7 +70,8 @@
                 m跟r都有一些特定ui屬性的意義
                 結果就真的找到了  margin Npx  就是 m-N
                 https://getbootstrap.com/docs/4.4/utilities/spacing/ -->
-                <input type="button" onclick="convertCSharpToJava()" class="btn btn-success btn-lg mt-1 mb-2" value="Clean">
+                <input type="button" onclick="convertCSharpToJava(2)" class="btn btn-success btn-lg mt-1 mb-2" value="Clean">
+                <input type="button" onclick="convertCSharpToJava(3)" class="btn btn-success btn-lg mt-1 mb-2" value="Clean 2">
                 <textarea id="resultTxt" class="textarea" placeholder="Hint: Result"></textarea>
 
             </div>
@@ -80,41 +81,45 @@
     </div>
 
     <script>
-        function convertCSharpToJava(){
-            try {
-                var inputTA = document.getElementById('solTxt');
-                var inputT = inputTA.value; 
-                var outputT = document.getElementById('resultTxt');
+            function convertCSharpToJava(slashesCou){
+                try {
+                    var inputTA = document.getElementById('solTxt');
+                    var inputT = inputTA.value; 
+                    var outputT = document.getElementById('resultTxt');
 
-                inputT = inputT.replace(/\\text/g, '');
-                inputT = inputT.replace(/\\mathcal{O}/g, '');
-                inputT = inputT.replace(/{{\(/g, '');
-                inputT = inputT.replace(/{{/g, '');
-                inputT = inputT.replace(/}}/g, '');
-                // inputT = inputT.replace(/.abs/g, '.Abs');
-                
-                var lines = inputT.split('\n');
+                    inputT = inputT.replace(/\\text/g, '');
+                    inputT = inputT.replace(/\\mathcal{O}/g, '');
+                    inputT = inputT.replace(/{{\(/g, '');
+                    inputT = inputT.replace(/{{/g, '');
+                    inputT = inputT.replace(/}}/g, '');
+                    // inputT = inputT.replace(/.abs/g, '.Abs');
+                    
+                    var lines = inputT.split('\n');
 
+                    var slash = '// ';
+                    if (slashesCou == 3){
+                        slash = '/// ';
+                    }
 
-                var commentLines = [];
-                for (let index = 0; index < lines.length; index++) {
-                    const element = lines[index];
-                    commentLines.push('// ' + element);
+                    var commentLines = [];
+                    for (let index = 0; index < lines.length; index++) {
+                        const element = lines[index];
+                        commentLines.push(slash + element);
+                    }
+
+                    //https://stackoverflow.com/questions/400212/how-do-i-copy-to-the-clipboard-in-javascript
+                    var res =  commentLines.join('\n');
+                    outputT.value = res;
+                    navigator.clipboard.writeText(res).then(function() {
+                        console.log('Async: Copying to clipboard was successful!');
+                        }, function(err) {
+                        alert('Async: Could not copy text: ', err);
+                    });
+
+                } catch (e) {
+                    alert('convert error: ' + e);
                 }
-
-                //https://stackoverflow.com/questions/400212/how-do-i-copy-to-the-clipboard-in-javascript
-                var res =  commentLines.join('\n');
-                outputT.value = res;
-                navigator.clipboard.writeText(res).then(function() {
-                    console.log('Async: Copying to clipboard was successful!');
-                    }, function(err) {
-                    alert('Async: Could not copy text: ', err);
-                });
-
-            } catch (e) {
-                alert('convert error: ' + e);
             }
-        }
     </script>
 </body>
 
