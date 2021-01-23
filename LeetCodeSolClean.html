@@ -20,7 +20,7 @@
     <div class="container">
         <div class="header">
             <nav class="navbar navbar-expand-lg navbar-light bg-light" >
-                <a class="navbar-brand w50pa" href="#"><img class="logo" src="./Img/HomeSmall.PNG" alt=""><span class="mx-1 h5 logo-text fSize22">LC Sol Article Cleaner</span></a>
+                <a class="navbar-brand w50pa" href="./index.html"><img class="logo" src="./Img/HomeSmall.PNG" alt=""><span class="mx-1 h5 logo-text fSize22">LC Sol Article Cleaner</span></a>
                 <!-- button 我先不加navbar-toggler -->
                 <!-- 漢堡選單 -->
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportContent" aria-controls="navbarSupportContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,8 +72,9 @@
                 https://getbootstrap.com/docs/4.4/utilities/spacing/ -->
                 <input type="button" onclick="convertCSharpToJava(2)" class="btn btn-success btn-lg mt-1 mb-2" value="Clean">
                 <input type="button" onclick="convertCSharpToJava(3)" class="btn btn-success btn-lg mt-1 mb-2" value="Clean 2">
+                <input type="radio" name="cleanType" value="AutoClean"> AutoClean 
+                <input type="radio" name="cleanType" value="AutoClean2"> AutoClean2
                 <textarea id="resultTxt" class="textarea" placeholder="Hint: Result"></textarea>
-
             </div>
             <div class="footer p-2"></div>
         </div>
@@ -81,6 +82,36 @@
     </div>
 
     <script>
+            window.onload = (event) =>{
+                
+                var solTxtInput = document.getElementById('solTxt');
+                var x = document.getElementsByName("cleanType");
+                var i;
+                for (i = 0; i < x.length; i++) {
+                // if (x[i].type == "checkbox") {
+                //     x[i].checked = true;
+                // }
+                    x[i].onclick = function( ){
+                        if(this.value == 'AutoClean'){
+                            solTxtInput.onchange = function(){
+                                convertCSharpToJava(2);
+                            };
+                        } else if(this.value == 'AutoClean2'){
+                            solTxtInput.onchange = function(){
+                                convertCSharpToJava(3);
+                            };
+                        }
+                    };
+                }
+
+                //var checkVal = document.querySelector('input[name="cleanType"]:checked').value;  
+                // if(checkVal == 'AutoClean'){
+                //   //  solTxtInput.
+                // } else if(checkVal == 'AutoClean2'){
+                // }
+            };
+
+
             function convertCSharpToJava(slashesCou){
                 try {
                     var inputTA = document.getElementById('solTxt');
@@ -107,19 +138,27 @@
                         commentLines.push(slash + element);
                     }
 
-                    //https://stackoverflow.com/questions/400212/how-do-i-copy-to-the-clipboard-in-javascript
                     var res =  commentLines.join('\n');
                     outputT.value = res;
-                    navigator.clipboard.writeText(res).then(function() {
-                        console.log('Async: Copying to clipboard was successful!');
-                        }, function(err) {
-                        alert('Async: Could not copy text: ', err);
-                    });
+                
+                    copyText(res);
 
                 } catch (e) {
                     alert('convert error: ' + e);
                 }
             }
+
+            function copyText(txt){
+
+                //https://stackoverflow.com/questions/400212/how-do-i-copy-to-the-clipboard-in-javascript
+                navigator.clipboard.writeText(txt).then(function() {
+                    console.log('Async: Copying to clipboard was successful!');
+                    }, function(err) {
+                    alert('Async: Could not copy text: ', err);
+                });
+
+            } 
+
     </script>
 </body>
 

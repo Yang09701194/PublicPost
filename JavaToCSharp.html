@@ -34,7 +34,7 @@ integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroa
     <div class="container">
         <div class="header">
             <nav class="navbar navbar-expand-lg navbar-light bg-light" >
-                <a class="navbar-brand w50pa" href="#"><img class="logo" src="./Img/HomeSmall.PNG" alt=""><span class="mx-1 h5 logo-text fSize22">Java Convert To CSharp</span></a>
+                <a class="navbar-brand w50pa" href="./index.html"><img class="logo" src="./Img/HomeSmall.PNG" alt=""><span class="mx-1 h5 logo-text fSize22">Java Convert To CSharp</span></a>
                 <!-- button 我先不加navbar-toggler -->
                 <!-- 漢堡選單 -->
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportContent" aria-controls="navbarSupportContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -113,6 +113,7 @@ integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroa
                 javaT = javaT.replace(/.addFirst/g, '.Push');
                 javaT = javaT.replace(/.add/g, '.Add');
                 javaT = javaT.replace(/Deque/g, 'Stack');
+                javaT = javaT.replace(/new ArrayDeque/g, 'Stack Reverse');
                 javaT = javaT.replace(/ArrayDeque/g, 'Stack');
                 javaT = javaT.replace(/ArrayStack/g, 'Stack');
                 javaT = javaT.replace(/.removeFirst/g, '.Pop');
@@ -120,6 +121,7 @@ integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroa
                 javaT = javaT.replace(/.isEmpty/g, '.Any!');
                 javaT = javaT.replace(/@Override/g, '');
                 javaT = javaT.replace(/boolean/g, 'bool');
+                javaT = javaT.replace(/\dfrac/g, '');
                 
                 csharpTA.value = javaT;
 
