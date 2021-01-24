@@ -123,6 +123,10 @@
                     inputT = inputT.replace(/{{\(/g, '');
                     inputT = inputT.replace(/{{/g, '');
                     inputT = inputT.replace(/}}/g, '');
+                    inputT = inputT.replace(/\dfrac/g, '');
+                    inputT = inputT.replace(/NN/g, 'N');
+                    inputT = inputT.replace(/LL/g, 'L');
+                    
                     // inputT = inputT.replace(/.abs/g, '.Abs');
                     
                     var lines = inputT.split('\n');
