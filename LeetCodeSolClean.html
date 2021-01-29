@@ -118,6 +118,7 @@
                     var inputT = inputTA.value; 
                     var outputT = document.getElementById('resultTxt');
 
+                    // g  
                     inputT = inputT.replace(/\\text/g, '');
                     inputT = inputT.replace(/\\mathcal{O}/g, '');
                     inputT = inputT.replace(/{{\(/g, '');
@@ -130,6 +131,20 @@
                     // inputT = inputT.replace(/.abs/g, '.Abs');
                     
                     var lines = inputT.split('\n');
+
+                    for (let i = 0; i < lines.length; i++) {
+                        var line = lines[i];
+                        var idx = line.indexOf(")O(");
+                        if(idx > 0){
+                            var start = idx - 1;
+                            // substring 是取到 end - 1
+                            var pattern = line.substring(start, start + 1);
+                            // https://stackoverflow.com/questions/494035/how-do-you-use-a-variable-in-a-regular-expression
+                            var regex = new RegExp('\\\('+pattern+'\\\)O' ,"g");
+                            lines[i] = line.replace(regex, 'O');
+                        }
+                        
+                    }
 
                     var slash = '// ';
                     if (slashesCou == 3){

@@ -121,7 +121,6 @@ integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroa
                 javaT = javaT.replace(/.isEmpty/g, '.Any!');
                 javaT = javaT.replace(/@Override/g, '');
                 javaT = javaT.replace(/boolean/g, 'bool');
-                javaT = javaT.replace(/\dfrac/g, '');
                 
                 csharpTA.value = javaT;
 
