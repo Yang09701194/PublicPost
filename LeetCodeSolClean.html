@@ -135,12 +135,13 @@
                     for (let i = 0; i < lines.length; i++) {
                         var line = lines[i];
                         var idx = line.indexOf(")O(");
+                        var idxStart = line.indexOf("(");
                         if(idx > 0){
-                            var start = idx - 1;
                             // substring 是取到 end - 1
-                            var pattern = line.substring(start, start + 1);
+                            var pattern = line.substring(idxStart+1, idx);
                             // https://stackoverflow.com/questions/494035/how-do-you-use-a-variable-in-a-regular-expression
-                            var regex = new RegExp('\\\('+pattern+'\\\)O' ,"g");
+                            // var regex = new RegExp('\\\('+pattern+'\\\)O' ,"g");
+                            var regex = new RegExp('\\\(' + pattern+'\\\)O' ,"g");
                             lines[i] = line.replace(regex, 'O');
                         }
                         
